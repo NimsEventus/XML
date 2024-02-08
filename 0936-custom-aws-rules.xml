@@ -1,0 +1,156 @@
+<group name="amazon, aws">
+
+    <rule id="100650" level="0" noalert="1">
+        <decoded_as>json</decoded_as>
+        <field name="eventVersion">1.08|1.09</field>
+        <description>AWS: Alert</description>
+    </rule>
+
+    <rule id="118000" level="14">
+        <if_sid>100650</if_sid>
+        <field name="userIdentity.type">root|Root</field>
+        <field name="additionalEventData.MFAUsed">Yes</field>
+        <field name="eventName">ConsoleLogin</field>
+        <field name="eventType">AwsConsoleSignIn</field>
+        <field name="responseElements.ConsoleLogin">Success</field>
+        <description>AWS root console login with multi-factor authentication detected.</description>
+    </rule>
+
+    <rule id="118001" level="14">
+        <if_sid>100650</if_sid>
+        <field name="userIdentity.type">root|Root</field>
+        <field name="additionalEventData.MFAUsed">No</field>
+        <field name="eventName">ConsoleLogin</field>
+        <field name="eventType">AwsConsoleSignIn</field>
+        <field name="responseElements.ConsoleLogin">Success</field>
+        <description>AWS root console login without multi-factor authentication detected.</description>
+    </rule>
+
+    <rule id="118002" level="10">
+        <if_sid>100650</if_sid>
+        <field name="eventName">CreateAccessKey</field>
+        <description>Access key created.</description>
+    </rule>
+
+    <rule id="118003" level="13">
+        <if_sid>100650</if_sid>
+        <field name="eventName">DeactivateMFADevice</field>
+        <description>Multi-factor authentication deactivated.</description>
+    </rule>
+
+    <rule id="118004" level="10">
+        <if_sid>100650</if_sid>
+        <field name="eventName">CreateVpc</field>
+        <description>A VPC has been created.</description>
+    </rule>
+
+    <rule id="118005" level="5">
+        <if_sid>100650</if_sid>
+        <field name="eventName">CreateBucket</field>
+        <description>An S3 Bucket is created.</description>
+    </rule>
+
+    <rule id="118006" level="5">
+        <if_sid>100650</if_sid>
+        <field name="eventName">EnableVpcClassicLink</field>
+        <description>A VPC for ClassicLink has been enabled.</description>
+    </rule>
+    
+    <rule id="118007" level="10">
+        <if_sid>100650</if_sid>
+        <field name="eventType">AwsApiCall</field>
+        <field name="userIdentity.type">root|Root</field>
+        <description>AWS API call by Root user.</description>
+    </rule>
+ 
+    <rule id="118008" level="7" noalert="1">
+        <if_sid>100650</if_sid>
+        <field name="eventType">AwsApiCall</field>
+        <description>AWS API call made by user</description>
+    </rule>
+
+    <rule id="118009" level="14" frequency="600" timeframe="5">
+        <if_matched_sid>118008</if_matched_sid>
+        <same_field>sourceIPAddress</same_field>
+        <same_field>label</same_field>
+        <description>Possible Brute Force Attack: More than 600 API calls are made within 5 seconds.</description>
+    </rule>
+
+    <rule id="118010" level="12">
+        <if_sid>100650</if_sid>
+        <field name="eventName">PutBucketPublicAccessBlock</field>
+        <description>S3 Bucket created with public access.</description>
+    </rule>
+
+    <rule id="118011" level="10">
+        <if_sid>100650</if_sid>
+        <field name="eventName">DeleteBucketCors</field>
+        <description>The CORS (Cross-Origin Resource Sharing) configuration information for a bucket has been deleted.</description>
+    </rule>
+
+    <rule id="118012" level="10">
+        <if_sid>100650</if_sid>
+        <field name="eventName">ConsoleLogin</field>
+        <field name="responseElements.ConsoleLogin">Failure</field>
+        <description>Login Failure by IAM user.</description>
+    </rule>
+
+    <rule id="118013" level="14" frequency="7" timeframe="250">
+        <if_matched_sid>118012</if_matched_sid>
+        <same_field>sourceIPAddress</same_field>
+        <same_field>label</same_field>
+        <description>Brute Force attempt to login as IAM user.</description>
+    </rule>
+
+    <rule id="118014" level="10">
+        <if_sid>100650</if_sid>
+        <field name="eventName">AssociateVpcCidrBlock</field>
+        <description>A CIDR block has been associated with a VPC.</description>
+    </rule>
+
+    <rule id="118015" level="10">
+        <if_sid>100650</if_sid>
+        <field name="eventName">CreateSecurityGroup</field>
+        <description>A Security Group has been created.</description>
+    </rule>
+
+    <rule id="118016" level="10">
+        <if_sid>100650</if_sid>
+        <field name="eventName">DeleteSecurityGroup</field>
+        <description>A security group was deleted.</description>
+    </rule>
+
+    <rule id="118017" level="10">
+        <if_sid>100650</if_sid>
+        <field name="eventName">RevokeSecurityGroupEgress</field>
+        <description>An egress rule has been removed from a security group for a VPC.</description>
+    </rule>
+
+    <rule id="118018" level="10">
+        <if_sid>100650</if_sid>
+        <field name="eventName">RevokeSecurityGroupIngress</field>
+        <description>An ingress rule has been removed from a security group for a VPC.</description>
+    </rule>
+
+    <rule id="101651" level="12" frequency="5" timeframe="30">
+        <if_matched_sid>80250</if_matched_sid>
+        <same_field>sourceIPAddress</same_field>
+        <same_field>label</same_field>
+        <description>Multiple failed attemps to access AWS CloudTrial.</description>
+    </rule>
+
+    <rule id="101652" level="9">
+        <if_sid>100650</if_sid>
+        <field name="errorCode">AccessDenied</field>
+        <description>Access Denied for $(eventName).</description>
+    </rule>
+
+    <rule id="118019" level="12" frequency="15" timeframe="10">
+        <if_matched_sid>101652</if_matched_sid>
+        <same_field>eventName</same_field>
+        <same_field>sourceIPAddress</same_field>
+        <same_field>label</same_field>
+        <description>Multiple failed attemps to access AWS CloudTrial.</description>
+    </rule>
+
+</group>
