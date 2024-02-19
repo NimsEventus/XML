@@ -1,4 +1,4 @@
-<group name="amazon, aws"> Eventus_Rules_2
+<group name="amazon, aws"> Eventus_Rules_Deployment
 
     <rule id="100650" level="0" noalert="1">
         <decoded_as>json</decoded_as>
