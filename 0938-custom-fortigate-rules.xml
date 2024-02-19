@@ -1,4 +1,4 @@
-<group name="fortigate,syslog,">  
+<group name="fortigate,syslog,">  Eventus_Security
 
   <rule id="101001" level="0" noalert="1">
      <if_sid>81603</if_sid>
