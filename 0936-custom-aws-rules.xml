@@ -2,7 +2,7 @@
 
     <rule id="eventus" level="0" noalert="1">
         <decoded_as>json</decoded_as>
-        <field name="eventVersion">1.08|1.09</field>
+        <field name="nimesh">1.08|1.09</field>
         <description>AWS: Alert</description>
     </rule>
 
