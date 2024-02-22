@@ -1,6 +1,6 @@
 <group name="Eventus, aws"> Eventus.....!!!!!
 
-    <rule id="100650" level="0" noalert="1">
+    <rule id="eventus" level="0" noalert="1">
         <decoded_as>json</decoded_as>
         <field name="eventVersion">1.08|1.09</field>
         <description>AWS: Alert</description>
