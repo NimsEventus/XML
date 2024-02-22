@@ -10,7 +10,7 @@
         <if_sid>100650</if_sid>
         <field name="userIdentity.type">root|Root</field>
         <field name="additionalEventData.MFAUsed">Yes</field>
-        <field name="eventName">ConsoleLogin</field>
+        <field name="eventName">admin login</field>
         <field name="eventType">AwsConsoleSignIn</field>
         <field name="responseElements.ConsoleLogin">Success</field>
         <description>AWS root console login with multi-factor authentication detected.</description>
