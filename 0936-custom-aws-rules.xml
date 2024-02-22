@@ -1,4 +1,4 @@
-<group name="amazon, aws"> Eventus
+<group name="Eventus, aws"> Eventus.....!!!!!
 
     <rule id="100650" level="0" noalert="1">
         <decoded_as>json</decoded_as>
