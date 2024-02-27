@@ -1,4 +1,4 @@
-<group name="Eventus, aws"> Eventus.....!!!!!
+<group name="Eventus, aws"> TESTING
 
     <rule id="eventus" level="0" noalert="1">
         <decoded_as>json</decoded_as>
