@@ -1,8 +1,8 @@
-<group name="Eventus, aws"> TESTING....2
+<group name="Eventus, aws">
 
     <rule id="eventus" level="0" noalert="1">
         <decoded_as>json</decoded_as>
-        <field name="nimesh">1.08|1.09</field>
+        <field name="nimesh">1.08|1.10</field>
         <description>AWS: Alert</description>
     </rule>
 
