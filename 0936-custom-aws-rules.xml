@@ -1,4 +1,4 @@
-<group name="Testing, aws">
+<group name="Nims, aws">
 
     <rule id="eventus" level="0" noalert="4">
         <decoded_as>json</decoded_as>
